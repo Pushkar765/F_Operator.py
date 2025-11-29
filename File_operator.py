@@ -5,10 +5,9 @@ class New_entry:
     def __init__(self,N_Entry):
         self.N_Entry = N_Entry
 
-        with open("demo.txt","w") as file:
+        with open("demo.txt","a") as file:
             print("Enter your journal Entry.")
             file.write(N_Entry)
-        file.close()
 
         print("Entry added successfullly :)")
 
@@ -33,7 +32,7 @@ class Clear_all_entries:
     def c_E(self):
         Confirmation = input("\nAre youe about deleting All entries(Yes/No) : \n")
         if Confirmation == "Yes" or "yes":
-            with open("demo.txt","w") as file:
+            with open("demo.txt") as file:
                 file.write("")
         elif Confirmation == "No" or "no":
             print("Entries are safe :)")
@@ -53,12 +52,9 @@ class Search_Entry:
                     print("---------------")
                     print(f"[{now}]")
                     print(line)
+                else:
+                    print()
 
-
-
-
-N_E = []
-S_E = []
 import datetime
 
 now = datetime.datetime.now()
@@ -69,13 +65,13 @@ while True:
     print("Enter 2 to View all Entries.")
     print("Enter 3 to Search entry.")
     print("Enter 4 to Clear all entry.")
-    print("Enter 0 to add Entry.")
+    print("Enter 0 to exit the programme.")
 
     Choice = int(input("Enter your Choice here : "))
 
     if Choice == 1:
           
-        new_entry = input("Enter your entry : ")
+        new_entry = input("Enter your Journal entry : ")
 
         obj = New_entry(new_entry)
         N_E.append(obj)
@@ -96,7 +92,6 @@ while True:
 
 
     elif Choice == 4:
-        print("Here your all entries :)")
         obj4 = Clear_all_entries()
         obj4.c_E()
         print(f"[{now}]\n")
