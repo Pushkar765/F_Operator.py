@@ -6,8 +6,7 @@ class New_entry:
         self.N_Entry = N_Entry
 
         with open("demo.txt","a") as file:
-            print("Enter your journal Entry.")
-            file.write(N_Entry)
+            file.write(N_Entry + "\n")
 
         print("Entry added successfullly :)")
 
@@ -52,8 +51,7 @@ class Search_Entry:
                     print("---------------")
                     print(f"[{now}]")
                     print(line)
-                else:
-                    print()
+
 
 import datetime
 
@@ -74,8 +72,6 @@ while True:
         new_entry = input("Enter your Journal entry : ")
 
         obj = New_entry(new_entry)
-        N_E.append(obj)
-
         print("\n New entry added succesfully :)\n")
 
     elif Choice == 2:
