@@ -1,61 +1,55 @@
 print("Welcome to our new project File_Operator :)")
 
-class New_entry:
-    
-    def __init__(self,N_Entry):
-        self.N_Entry = N_Entry
+import datetime
 
+now = datetime.datetime.now()
+
+
+class File_Operator:
+    
+    def __init__(self):
+        self.filename = "demo.txt"
+
+    def add_entry(self):
+        entry = input("Enter your journal here : ")
         with open("demo.txt","a") as file:
-            file.write(N_Entry + "\n")
+            file.write( entry + "\n")
 
         print("Entry added successfullly :)")
 
-class View_all_entry:
-    
-    def __init__(self):
-            self.filename = "demo.txt"
-
     def reader(self):
-        file = open("demo.txt","r")
-
-        lines = file.readlines()
-            
+        print("\n Here are all the entries :)")
+        file = open(self.filename,"r")
+        lines = file.readlines()    
         for i in lines:
             print(i)
+        file.close()
+        print(f"{now}")
 
-
-class Clear_all_entries:
-
-    def __init__(self):
-        self.filename = "demo.txt"
-    def c_E(self):
-        Confirmation = input("\nAre youe about deleting All entries(Yes/No) : \n")
-        if Confirmation == "Yes" or "yes":
-            with open("demo.txt") as file:
-                file.write("")
-        elif Confirmation == "No" or "no":
-            print("Entries are safe :)")
-        else:
-            print("Invalid choice.")
-
-class Search_Entry:
-    def __init__(self):
-        self.filename = "demo.txt"
     def srch(self):
-        
+        kwrd = input("\nEnter a keyword which you want to found : \n")
         with open("demo.txt","r") as file:
             lines = file.readlines()
-            kwrd = input("\nEnter a keyword which you want to found : \n")
+            
             for line in lines:
                 if kwrd in line:
                     print("---------------")
                     print(f"[{now}]")
                     print(line)
+        
 
+    def c_E(self):
+        Confirmation = input("\nAre youe about deleting All entries(Yes/No) : \n")
+        if Confirmation == "Yes" or "yes":
+            with open("demo.txt","w") as file:
+                file.write("")
+            print("\nYour all entries are deleted successfully :) \n")
+        elif Confirmation == "No" or "no":
+            print("Entries are safe :)")
+        else:
+            print("Invalid choice.")
 
-import datetime
-
-now = datetime.datetime.now()
+file_op = File_Operator()
 
 while True:
      
@@ -69,29 +63,19 @@ while True:
 
     if Choice == 1:
           
-        new_entry = input("Enter your Journal entry : ")
-
-        obj = New_entry(new_entry)
-        print("\n New entry added succesfully :)\n")
+        file_op.add_entry()
 
     elif Choice == 2:
-        print("\nHere are the all entries :)\n")
-        obj2 = View_all_entry()
-        obj2.reader()
-        print(f"[{now}]\n")
-       
+        
+       file_op.reader()
 
     elif Choice == 3:
-        obj3 = Search_Entry()
-        obj3.srch()
-        print(f"[{now}]\n")
-
+      
+        file_op.srch()
 
     elif Choice == 4:
-        obj4 = Clear_all_entries()
-        obj4.c_E()
-        print(f"[{now}]\n")
-
+        
+        file_op.c_E()
 
     elif Choice == 0:
         print("Thanks for visiting our Project :)")
